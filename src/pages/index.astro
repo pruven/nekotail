@@ -1,0 +1,63 @@
+---
+import { Cat, Shuffle, Image, Volume2, CodeXml, ArrowUpRight, ArrowRight, Copy, Heart, Download, X, Plus, Asterisk, ChevronDown } from '@lucide/astro';
+import { device, statuses } from '../lib/cats';
+import '../styles/global.css';
+const identity = device(Astro);
+const cat = identity.cat;
+Astro.response.headers.set('Cache-Control', 'private, no-store');
+Astro.response.headers.set('Vary', 'Cookie, X-Forwarded-For');
+---
+<!doctype html>
+<html lang="en" data-type="software">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Cat pictures, tiny meows, and dramatic HTTP codes. A private cat service for your tailnet." />
+    <meta name="page-type" content="software" /><meta name="site-kind" content="software" />
+    <title>Nekotail — Cats on demand.</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="masthead wrap">
+      <a class="skip-link" href="#main">Skip to cats</a>
+      <a class="brand" href="/" aria-label="Nekotail home"><Cat size={29} stroke-width={1.6}/><span>nekotail</span><span class="brand-period">.</span></a>
+      <span class="masthead-note">A small corner of the internet. All yours.</span>
+      <div class="header-actions"><button class="plain-link api-link" data-modal="api">The API<ArrowUpRight size={15}/></button><button class="connection" data-modal="network"><span class="online-dot" id="network-dot"></span><span id="network-state">Checking tailnet</span></button></div>
+    </header>
+    <main id="main">
+      <section class="playground wrap" aria-label="Cat playground">
+        <div class="intro">
+          <div class="eyebrow"><span class="asterisk" aria-hidden="true"><Asterisk size={25}/></span> Cat-as-a-Service</div>
+          <h1>Cats.<br/><em>On demand.</em></h1>
+          <p class="intro-copy">Pictures, meows, and HTTP cats.<br/>A little company for your tailnet.</p>
+          <div class="cat-detail"><span class="detail-prefix">Currently serving</span><h2 id="cat-name">{cat.name}<span id="cat-color">{cat.color}</span></h2><p id="cat-mood">{cat.mood}</p></div>
+        </div>
+        <div class="gallery">
+          <div class="gallery-toolbar"><div class="tabs" role="tablist" aria-label="Response type"><button role="tab" aria-selected="true" aria-controls="cat-stage" id="tab-pictures" data-view="pictures"><Image size={16}/>Pictures</button><button role="tab" aria-selected="false" aria-controls="cat-stage" id="tab-meows" data-view="meows"><Volume2 size={16}/>Meows</button><button role="tab" aria-selected="false" aria-controls="cat-stage" id="tab-status" data-view="status"><CodeXml size={16}/>HTTP cats</button></div><span class="gallery-index" aria-hidden="true">6 resident cats</span></div>
+          <div class="cat-stage" id="cat-stage" role="tabpanel" aria-labelledby="tab-pictures" tabindex="0">
+            <img id="cat-image" src={cat.image} alt={`${cat.name}, your assigned cat`} width="1400" height="1050" fetchpriority="high"/>
+            <div class="image-actions"><button class="round-button" id="favorite" aria-label="Favorite this cat" aria-pressed="false"><Heart size={20}/></button><button class="round-button" id="download" aria-label="Download cat picture"><Download size={20}/></button></div>
+            <div class="sound-overlay" id="sound-overlay" hidden><span class="overlay-label">The meow station</span><button id="play-meow" aria-label="Play a meow"><Volume2 size={42}/></button><h2>A little conversation.</h2><p>Silas has something to say.</p></div>
+            <div class="status-overlay" id="status-overlay" hidden><span class="overlay-label">A very feline response</span><strong id="status-code">200</strong><h2 id="status-title">OK</h2><p id="status-message">All systems purring.</p></div>
+          </div>
+          <div class="gallery-foot"><span id="breadcrumb-current">Cat pictures</span><span class="response-badge" id="response-badge">200 OK</span></div>
+        </div>
+        <div class="primary-actions">
+          <div class="button-row"><button class="primary-button" id="serve-cat"><span id="serve-label">Serve another cat</span><ArrowRight size={23}/></button><button class="secondary-button" id="surprise" aria-label="Surprise me with a random picture, meow, or status"><Shuffle size={21}/><span>Surprise me</span></button></div>
+          <div class="action-footnote"><span class="keyboard-hint">Or press <kbd>space</kbd></span><span id="image-chip-text">Your daily dose of cat.</span></div>
+          <p class="inline-message" id="inline-message" role="status" aria-live="polite"></p>
+        </div>
+        <div class="device-identity"><button id="my-cat"><img src={cat.image} width="44" height="44" alt=""/><span>Your resident cat<strong>{cat.name} <span>#{identity.id.slice(0,4)}</span></strong></span><ArrowUpRight size={18}/></button><span class="device-note">Different device.<br/>Different personality.</span></div>
+      </section>
+      <details class="under-the-hood wrap"><summary><span><Plus size={17}/>Under the hood</span><span class="summary-note">For the curious & the curl enthusiasts<ChevronDown size={15}/></span></summary><div class="developer-content"><div class="endpoint-section"><h2>One request. One cat.</h2><div class="endpoint"><span>GET</span><code id="endpoint-path">/api/cat</code><button class="plain-link" id="copy-endpoint" aria-label="Copy endpoint URL"><Copy size={17}/></button></div><pre id="curl-command">curl /api/cat</pre><button class="plain-link" data-modal="api">Read the API reference<ArrowUpRight size={15}/></button></div><div class="activity-section"><h2>This session</h2><div class="table-head"><span>Request</span><span>Response</span><span>Time</span><span>Status</span></div><div id="activity-rows" aria-live="polite"><div class="empty-activity">Serve a cat to start your request history.</div></div></div></div></details>
+    </main>
+    <footer class="wrap"><span class="footer-line"><span class="footer-symbol" aria-hidden="true">↳</span> Privately served. Unreasonably fluffy.</span><div><button data-modal="about">A little help</button><button data-modal="credits">Credits<ArrowUpRight size={12}/></button><span class="footer-edition">Nº 001 / The cat edition</span></div></footer>
+    <dialog id="info-dialog" aria-labelledby="dialog-title"><div class="dialog-header"><span class="eyebrow" id="dialog-title">Nekotail / Field notes</span><button class="round-button" id="close-dialog" aria-label="Close dialog"><X size={20}/></button></div><div id="dialog-content"></div></dialog>
+    <audio id="meow-audio" src="/meow.ogg" preload="none"></audio>
+    <script define:vars={{ assignedCat: cat, deviceId: identity.id, statusOptions: statuses }}>window.nekotail = { assignedCat, deviceId, statusOptions };</script>
+    <script src="../lib/playground.ts"></script>
+  </body>
+</html>
