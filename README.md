@@ -30,7 +30,7 @@ tailscale serve --bg 4321
 
 The installer creates and enables a systemd **user** service, with automatic restart on failure. It starts with your user session after reboot. To keep user services running while logged out, enable lingering separately with `loginctl enable-linger "$USER"` if needed. The machine must remain powered on and connected to Tailscale. Serve might require enabling HTTPS in your Tailscale admin console; follow its CLI instructions.
 
-The server listens only on `127.0.0.1`. `TRUST_TAILSCALE_PROXY=1` is enabled by the user service so the final `X-Forwarded-For` address appended by Serve identifies each device. Never enable this variable behind an untrusted proxy or expose the application port directly. This identity is for cat assignment; access is enforced by Tailscale’s policy. Local browsers use an HTTP-only cookie instead. Different devices have different stable identity IDs; photos come from a shared 24-photo collection and can repeat across devices. The original six resident assignments stay stable when the random collection grows. No device registry or database is required.
+The server listens only on `127.0.0.1`. `TRUST_TAILSCALE_PROXY=1` is enabled by the user service so the final `X-Forwarded-For` address appended by Serve identifies each device. Never enable this variable behind an untrusted proxy or expose the application port directly. This identity is for cat assignment; access is enforced by Tailscale’s policy. Local browsers use an HTTP-only cookie instead. Different devices have different stable identity IDs; photos come from a shared 150-photo collection and can repeat across devices. The original six resident assignments stay stable when the random collection grows. No device registry or database is required.
 
 ```sh
 systemctl --user status nekotail
@@ -55,7 +55,7 @@ Intentional 4xx/5xx cat responses are successful playground interactions. Invali
 
 ## Assets
 
-24 bundled cat photographs from Unsplash, under the [Unsplash license](https://unsplash.com/license). Full image source URLs and licenses are recorded in [public/cats/sources.json](public/cats/sources.json).
+150 bundled cat photographs: the original 24 from Unsplash and 126 Wikimedia Commons portraits. Unsplash images use the [Unsplash license](https://unsplash.com/license); Commons images retain their individual Creative Commons or public-domain licenses. Photographer names, source pages, licenses, and thumbnail details are recorded in [public/cats/sources.json](public/cats/sources.json) and displayed at `/photo-credits`, linked from the app’s Credits menu. The images are bundled locally; serving a cat does not contact either source.
 
 “[Meow.ogg](https://commons.wikimedia.org/wiki/File:Meow.ogg)”: Silas meowing, recorded by Dan Crosby (Dcrosby). Unmodified, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Lucide icons: ISC license.
 

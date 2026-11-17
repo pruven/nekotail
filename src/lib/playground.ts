@@ -122,7 +122,7 @@ function openModal(kind: string) {
       if (network.dns) pre.textContent = `https://${network.dns}\nDevice: ${window.nekotail.deviceId}`;
     }).catch(() => { p.textContent = 'Connection status unavailable.'; });
   }
-  if (kind === 'credits') content.innerHTML = '<p>Cat photographs via <a href="https://unsplash.com" target="_blank" rel="noreferrer">Unsplash</a>, under the <a href="https://unsplash.com/license" target="_blank" rel="noreferrer">Unsplash license</a>.</p><p>“Meow.ogg”: Silas meowing, by Dan Crosby (Dcrosby), via <a href="https://commons.wikimedia.org/wiki/File:Meow.ogg" target="_blank" rel="noreferrer">Wikimedia Commons</a>. Unmodified, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noreferrer">CC BY-SA 3.0</a>.</p><p>Lucide icons: ISC license.</p>';
+  if (kind === 'credits') content.innerHTML = '<p>Cat photographs from Unsplash and Wikimedia Commons. <a href="/photo-credits">View all photographer credits and licenses</a>.</p><p>“Meow.ogg”: Silas meowing, by Dan Crosby (Dcrosby), via <a href="https://commons.wikimedia.org/wiki/File:Meow.ogg" target="_blank" rel="noreferrer">Wikimedia Commons</a>. Unmodified, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noreferrer">CC BY-SA 3.0</a>.</p><p>Lucide icons: ISC license.</p>';
   if (!dialog.open) dialog.showModal();
 }
 document.querySelectorAll<HTMLElement>('[data-modal]').forEach(button => button.addEventListener('click', () => openModal(button.dataset.modal!)));

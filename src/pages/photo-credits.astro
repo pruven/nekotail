@@ -1,0 +1,46 @@
+---
+import sources from '../../public/cats/sources.json';
+export const prerender = true;
+type PhotoSource = { file: string; source: string; license: string; title?: string; artist?: string; licenseName?: string };
+const photos = sources as PhotoSource[];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Photo credits — Nekotail</title>
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+  <body>
+    <main>
+      <a class="back" href="/">← Back to cats</a>
+      <h1>Photo credits</h1>
+      <p>Bundled cat photographs from Unsplash and Wikimedia Commons. Each image retains its original license. Commons images use Wikimedia-provided thumbnails, with no further edits.</p>
+      <ol>
+        {photos.map(photo => <li>
+          <h2><a href={photo.source} target="_blank" rel="noreferrer">{photo.title ?? photo.file.split('/').at(-1)?.replace('.jpg', '')}</a></h2>
+          <p>{photo.artist ?? 'Via Unsplash'}</p>
+          <div><a href={photo.license} target="_blank" rel="noreferrer">{photo.licenseName ?? 'Unsplash license'}</a><a href={photo.file}>View photo ↗</a></div>
+        </li>)}
+      </ol>
+    </main>
+    <style>
+      :global(*) { box-sizing: border-box; }
+      :global(body) { margin: 0; color: #172039; background: #ffe65a; font-family: Arial, sans-serif; }
+      main { max-width: 1000px; margin: auto; padding: 40px 24px; }
+      a { color: inherit; text-underline-offset: 3px; }
+      a:focus-visible { outline: 3px dashed #172039; outline-offset: 4px; }
+      .back { font-weight: 700; }
+      h1 { font-size: 40px; letter-spacing: -1px; margin: 32px 0 16px; }
+      p { font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; }
+      main > p { max-width: 720px; }
+      ol { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; list-style: none; padding: 0; margin-top: 32px; }
+      li { background: #fffdf5; border: 2px solid #172039; box-shadow: 4px 4px #172039; border-radius: 9px; padding: 20px; min-width: 0; }
+      h2 { font-size: 16px; line-height: 1.5; margin: 0; overflow-wrap: anywhere; }
+      li p { margin: 10px 0; }
+      li div { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; }
+      @media (max-width: 600px) { ol { grid-template-columns: 1fr; } h1 { font-size: 32px; } }
+    </style>
+  </body>
+</html>

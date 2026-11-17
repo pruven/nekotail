@@ -41,7 +41,7 @@ test('every catalog photo is a bundled JPEG with a source credit', async () => {
   const sources = JSON.parse(await readFile(new URL('../public/cats/sources.json', import.meta.url), 'utf8'));
   assert.equal(new Set(cats.map(cat => cat.name)).size, cats.length);
   assert.equal(new Set(cats.map(cat => cat.image)).size, cats.length);
-  assert.ok(cats.length >= 24);
+  assert.ok(cats.length >= 150);
   for (const cat of cats) {
     const bytes = await readFile(new URL(`../public${cat.image}`, import.meta.url));
     assert.equal(bytes.subarray(0, 3).toString('hex'), 'ffd8ff', cat.image);

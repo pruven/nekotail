@@ -46,3 +46,9 @@ Replaced the monochrome styling with a saturated yellow dotted backdrop, cobalt 
 ## HTTP cat visibility fix
 
 The HTTP status UI used an opaque panel covering the entire photograph. Replaced it with a compact, non-interactive corner badge containing only the code and title, leaving the underlying cat visible. Verified all ten status endpoints return the intended actual HTTP status and an available JPEG; tailnet HTTPS also returns a real 418 cat response. Bun build and Astro checks pass. Inspected desktop/mobile status-mode render fixtures assembled from production HTML and a real API response; these checks verify layout rather than browser click-through behavior.
+
+## 150-photo collection
+
+Expanded the bundled collection from 24 to 150 photographs with 126 Wikimedia Commons portraits. Reviewed contact sheets, excluded people-heavy shots, weak images, watermarks, and repeat crops, and filtered repeated Flickr source IDs. Retained photographer names, source-page links, original licenses, and thumbnail details in the source manifest. Added an on-demand `/photo-credits` page linked from Credits; the main photo-first interface is unchanged.
+
+Bun type checks and production build pass without diagnostics; all five tests pass with catalog coverage raised to at least 150 bundled JPEGs. After restarting the Bun service, production smoke checks passed for every image (39 MiB total), all 150 credit entries, the source manifest, new-photo random responses, and all ten HTTP-cat status codes. Tailnet HTTPS served a newly added Commons photograph. Existing resident assignments remain stable. Download candidates that failed or were excluded were kept outside the repository.

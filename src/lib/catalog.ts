@@ -1,3 +1,5 @@
+import additionalCats from './additional-cats.json';
+
 // Shared photo collection; safe to import in browser code.
 export const cats = [
   { name: 'Miso', image: '/cats/miso.jpg', mood: 'Watching the world go by', color: 'Tabby' },
@@ -24,6 +26,7 @@ export const cats = [
   { name: "Juniper", image: '/cats/juniper.jpg', mood: "Two cats are better than one", color: "Kittens" },
   { name: "Poppy", image: '/cats/poppy.jpg', mood: "Politely requesting your attention", color: "White" },
   { name: "Casper", image: '/cats/casper.jpg', mood: "Taking the scenic route home", color: "Ginger" },
+  ...additionalCats,
 ];
 
 // Keep existing device assignments stable as the random photo collection grows.
