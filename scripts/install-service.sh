@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 project_dir="$(cd "$(dirname "$0")/.." && pwd)"
-node_binary="$(command -v node)"
+bun_binary="$(bun -e 'console.log(process.execPath)')"
 unit_dir="${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"
 mkdir -p "$unit_dir"
 if [[ -f "$unit_dir/nekotail.service" ]]; then
@@ -15,7 +15,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=$project_dir
-ExecStart=$node_binary $project_dir/dist/server/entry.mjs
+ExecStart="$bun_binary" "$project_dir/dist/server/entry.mjs"
 Environment=HOST=127.0.0.1
 Environment=PORT=4321
 Environment=TRUST_TAILSCALE_PROXY=1
@@ -27,5 +27,6 @@ NoNewPrivileges=true
 WantedBy=default.target
 EOF
 systemctl --user daemon-reload
-systemctl --user enable --now nekotail.service
+systemctl --user enable nekotail.service
+systemctl --user restart nekotail.service
 echo 'Nekotail is running on localhost:4321. Next: tailscale serve --bg 4321'

@@ -2,14 +2,9 @@ import { createHash, randomInt, randomUUID } from 'node:crypto';
 import { isIP } from 'node:net';
 import type { APIContext } from 'astro';
 
-export const cats = [
-  { name: 'Miso', image: '/cats/miso.jpg', mood: 'Watching the world go by', color: 'Tabby' },
-  { name: 'Mochi', image: '/cats/mochi.jpg', mood: 'Taking a very important nap', color: 'Ginger' },
-  { name: 'Olive', image: '/cats/olive.jpg', mood: 'Quietly judging your code', color: 'Tabby' },
-  { name: 'Nori', image: '/cats/nori.jpg', mood: 'Taking a well-earned catnap', color: 'Ginger' },
-  { name: 'Tofu', image: '/cats/tofu.jpg', mood: 'Too cool for a health check', color: 'Fluffy' },
-  { name: 'Pip', image: '/cats/pip.jpg', mood: 'Ready for a small adventure', color: 'Calico' },
-];
+import { cats, residentCats } from './catalog';
+export { cats } from './catalog';
+
 export const statuses = [
   { code: 200, title: 'OK', message: 'All systems purring.' },
   { code: 201, title: 'Created', message: 'A new cat has entered the chat.' },
@@ -39,8 +34,8 @@ export function device(context: Pick<APIContext, 'request' | 'cookies'>) {
     context.cookies.set('nekotail-device', key, { path: '/', httpOnly: true, sameSite: 'lax', secure: new URL(context.request.url).protocol === 'https:', maxAge: 31536000 });
   }
   const id = createHash('sha256').update(key).digest('hex');
-  const index = Number.parseInt(id.slice(0, 8), 16) % cats.length;
-  return { id: id.slice(0, 8), cat: cats[index], index, address: tailnet ? forwarded : 'Local browser', tailnet: !!tailnet };
+  const index = Number.parseInt(id.slice(0, 8), 16) % residentCats.length;
+  return { id: id.slice(0, 8), cat: residentCats[index], index, address: tailnet ? forwarded : 'Local browser', tailnet: !!tailnet };
 }
 
 export function randomCat(exclude?: string | null) {

@@ -4,11 +4,11 @@
   "description": "Cats for every device on your tailnet",
   "main": "index.js",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "check": "astro check",
-    "start": "HOST=127.0.0.1 PORT=4321 node dist/server/entry.mjs",
-    "test": "node --test tests/*.test.mjs"
+    "dev": "bun run --bun astro dev",
+    "build": "bun run --bun astro build",
+    "check": "bun run --bun astro check",
+    "start": "HOST=127.0.0.1 PORT=4321 bun dist/server/entry.mjs",
+    "test": "bun test tests/"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +25,7 @@
     "typescript": "^6.0.3"
   },
   "engines": {
-    "node": ">=24"
-  }
+    "bun": ">=1.4.4"
+  },
+  "packageManager": "bun@1.4.4"
 }

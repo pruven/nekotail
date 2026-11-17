@@ -20,3 +20,17 @@ Remaining limits: six shared source photos mean different device identities can 
 The current interface replaces the sidebar dashboard with a full-width editorial playground: forest green background, pale lime actions, Instrument Serif headline, DM Sans controls, and a large cat photograph. API tools and the current session history now live in a collapsed “Under the hood” panel. Existing endpoint contracts, local favorites, download behavior, device assignments, and keyboard controls are retained. Tab changes also update the tabpanel's accessible label.
 
 Production build and Astro checks pass without diagnostics. Verified all client control IDs against rendered HTML, the cat endpoint, the actual HTTP 418 response, the production stylesheet, and the updated tailnet HTTPS page. Inspected headless screenshots at 1440, 768, and 390 pixels with no horizontal overflow. Performance script: zero failures; mobile warnings concern the shared source image and lower-page avatar, and CPU activity limits timing reliability. These are local checks, not cross-device or audio listening tests.
+
+## Cat collection and Bun migration
+
+The random collection now includes 24 bundled Unsplash photographs (18 additions), visually inspected before inclusion. Each asset has a source and license entry in `public/cats/sources.json`. The interface count and connection dialog use the shared catalog. The original resident-assignment pool stays fixed so existing devices keep their cats as the random collection grows.
+
+Bun 1.4.4 now manages dependencies (`bun.lock` replaces `package-lock.json`), runs Astro development/build/check commands with the Bun runtime, runs the tests, and runs the systemd production service. Updated the installer to resolve the actual Bun executable and restart an existing service after configuration changes. Setup docs use Bun commands. Earlier npm checks in this document describe the original deployment only.
+
+Validation: frozen Bun install passes; Astro check reports zero diagnostics; Bun production build succeeds; five Bun tests pass, including bundled JPEG/source coverage and resident assignment compatibility. Production smoke checks under Bun pass for all 24 images, random selection, cookie identity persistence, all ten actual HTTP status codes, real Ogg audio, and the Tailscale subprocess. Tailnet HTTPS serves the updated 24-photo interface. Confirmed systemd's running executable is Bun 1.4.4.
+
+## Photo-first simplification
+
+The default view now contains a large, uncropped cat photograph and two visible action labels directly beneath it: “Serve another cat” and “Surprise me.” Removed promotional copy, photo metadata, device panels, counters, the request-history interface, and the footer. Secondary modes, favorites, downloads, and the options menu use accessible icon buttons. API documentation, assigned-cat reset, connection details, and asset credits remain available on request. The primary action and space bar always return to a fresh picture; Surprise me retains picture, meow, and HTTP-cat responses.
+
+Bun production build and Astro type checks pass with zero diagnostics. Verified client control IDs, document order, removed copy, the random-photo endpoint, and the updated tailnet HTTPS page. Desktop and mobile screenshot inspection confirms the photo and buttons fit within the viewport. No backend or cat-assignment behavior changed. Click-through and audible playback were not tested in a browser during this layout change.
