@@ -1,0 +1,28 @@
+{
+  "name": "nekotail-video",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.4",
+  "scripts": {
+    "studio": "bun prepare.ts && remotionb studio src/index.ts",
+    "render": "bun render.ts",
+    "check": "tsc --noEmit",
+    "prepare": "bun prepare.ts",
+    "stills": "bun render.ts --stills-only"
+  },
+  "dependencies": {
+    "@remotion/bundler": "^4.0.544",
+    "@remotion/cli": "^4.0.544",
+    "@remotion/renderer": "^4.0.544",
+    "lucide-react": "^1.74.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.544"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}

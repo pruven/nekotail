@@ -1,0 +1,50 @@
+{
+  "miso": {
+    "src": "cats/miso.jpg",
+    "ratio": 1.453790238836968
+  },
+  "mochi": {
+    "src": "cats/mochi.jpg",
+    "ratio": 0.7142857142857143
+  },
+  "olive": {
+    "src": "cats/olive.jpg",
+    "ratio": 0.75
+  },
+  "nori": {
+    "src": "cats/nori.jpg",
+    "ratio": 1.5
+  },
+  "tofu": {
+    "src": "cats/tofu.jpg",
+    "ratio": 0.75
+  },
+  "pip": {
+    "src": "cats/pip.jpg",
+    "ratio": 0.6666666666666666
+  },
+  "bean": {
+    "src": "cats/bean.jpg",
+    "ratio": 0.75
+  },
+  "luna": {
+    "src": "cats/luna.jpg",
+    "ratio": 1.5
+  },
+  "sesame": {
+    "src": "cats/sesame.jpg",
+    "ratio": 0.517464424320828
+  },
+  "maple": {
+    "src": "cats/maple.jpg",
+    "ratio": 1.5
+  },
+  "biscuit": {
+    "src": "cats/biscuit.jpg",
+    "ratio": 1
+  },
+  "suki": {
+    "src": "cats/suki.jpg",
+    "ratio": 1.6
+  }
+}
