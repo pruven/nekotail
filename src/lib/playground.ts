@@ -1,4 +1,4 @@
-export {};
+import { randomVoice } from './meows';
 type CatData = { name: string; image: string; mood: string; color: string };
 type View = 'pictures' | 'meows' | 'status';
 declare global { interface Window { nekotail: { assignedCat: CatData; deviceId: string } } }
@@ -8,6 +8,8 @@ const audio = $<HTMLAudioElement>('meow-audio');
 const dialog = $<HTMLDialogElement>('info-dialog');
 let current = window.nekotail.assignedCat;
 let busy = false;
+let lastVoice: string | undefined;
+let meowRequest = 0;
 let favorites: string[] = [];
 try {
   const saved = JSON.parse(localStorage.getItem('nekotail-favorites') ?? '[]');
@@ -24,6 +26,8 @@ function showCat(cat: CatData) {
 }
 function changeView(next: View) {
   audio.pause(); message('');
+  meowRequest++;
+  $<HTMLButtonElement>('play-meow').disabled = false;
   $('cat-stage').setAttribute('aria-labelledby', `tab-${next}`);
   document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(button => {
     const active = button.dataset.view === next;
@@ -35,9 +39,22 @@ function changeView(next: View) {
   $('download').hidden = next !== 'pictures';
 }
 async function playMeow() {
-  audio.currentTime = 0;
-  try { await audio.play(); announce('Silas says hello.'); }
-  catch { message('Audio could not play. Try the speaker again.'); }
+  const request = ++meowRequest;
+  const button = $<HTMLButtonElement>('play-meow');
+  const voice = randomVoice(lastVoice);
+  lastVoice = voice.id;
+  button.disabled = true;
+  message('');
+  audio.pause();
+  audio.src = `/api/meow?voice=${encodeURIComponent(voice.id)}`;
+  try {
+    await audio.play();
+    if (request === meowRequest) announce(voice.title);
+  } catch {
+    if (request === meowRequest) message('Audio could not play. Try the speaker again.');
+  } finally {
+    if (request === meowRequest) button.disabled = false;
+  }
 }
 async function serve(next: View) {
   if (busy) return;
@@ -109,7 +126,7 @@ function openModal(kind: string) {
     }));
   }
   if (kind === 'api') {
-    content.innerHTML = '<h3>GET /api/cat</h3><p>Your assigned cat as JSON. Add <code>?random=1</code> for a random picture.</p><h3>GET /api/meow</h3><p>A meow recording, served as audio/ogg.</p><h3>GET /api/status?code=418</h3><p>A cat response with its actual HTTP status. Omit the code for a random one.</p>';
+    content.innerHTML = '<h3>GET /api/cat</h3><p>Your assigned cat as JSON. Add <code>?random=1</code> for a random picture.</p><h3>GET /api/meow</h3><p>A random meow, served as audio/ogg. Add <code>?exclude=voice-id</code> to avoid repeating a voice, or <code>?voice=voice-id</code> to select one. The <code>X-Meow-Voice</code> response header identifies the recording.</p><h3>GET /api/status?code=418</h3><p>A cat response with its actual HTTP status. Omit the code for a random one.</p>';
     const pre = document.createElement('pre');
     pre.textContent = `curl ${location.origin}/api/cat\ncurl -i ${location.origin}/api/status?code=418\ncurl ${location.origin}/api/meow -o meow.ogg`;
     content.append(pre);
@@ -122,7 +139,7 @@ function openModal(kind: string) {
       if (network.dns) pre.textContent = `https://${network.dns}\nDevice: ${window.nekotail.deviceId}`;
     }).catch(() => { p.textContent = 'Connection status unavailable.'; });
   }
-  if (kind === 'credits') content.innerHTML = '<p>Cat photographs from Unsplash and Wikimedia Commons. <a href="/photo-credits">View all photographer credits and licenses</a>.</p><p>“Meow.ogg”: Silas meowing, by Dan Crosby (Dcrosby), via <a href="https://commons.wikimedia.org/wiki/File:Meow.ogg" target="_blank" rel="noreferrer">Wikimedia Commons</a>. Unmodified, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noreferrer">CC BY-SA 3.0</a>.</p><p>Lucide icons: ISC license.</p>';
+  if (kind === 'credits') content.innerHTML = '<p>Cat photographs from Unsplash and Wikimedia Commons. <a href="/photo-credits">View all photographer credits and licenses</a>.</p><p>Real meow recordings from Wikimedia Commons. <a href="/audio-credits">View all recording credits, licenses, and audio edits</a>.</p><p>Lucide icons: ISC license.</p>';
   if (!dialog.open) dialog.showModal();
 }
 document.querySelectorAll<HTMLElement>('[data-modal]').forEach(button => button.addEventListener('click', () => openModal(button.dataset.modal!)));

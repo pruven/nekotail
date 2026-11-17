@@ -49,7 +49,7 @@ Astro.response.headers.set('Vary', 'Cookie, X-Forwarded-For');
       <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
     </main>
     <dialog id="info-dialog" aria-labelledby="dialog-title"><div class="dialog-header"><h2 id="dialog-title">Nekotail</h2><button class="icon-button" id="close-dialog" aria-label="Close dialog"><X size={20}/></button></div><div id="dialog-content"></div></dialog>
-    <audio id="meow-audio" src="/meow.ogg" preload="none"></audio>
+    <audio id="meow-audio" preload="none"></audio>
     <script define:vars={{ assignedCat: cat, deviceId: identity.id }}>window.nekotail = { assignedCat, deviceId };</script>
     <script src="../lib/playground.ts"></script>
   </body>

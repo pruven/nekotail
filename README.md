@@ -1,6 +1,6 @@
 # Nekotail — Cat-as-a-Service
 
-A private cat playground for your tailnet. Built with Astro, the standalone server adapter, and the Bun runtime, served through Tailscale Serve. Bundled pictures and sound keep the cat content independent of external APIs.
+A private cat playground for your tailnet. Built with Astro, the standalone server adapter, and the Bun runtime, served through Tailscale Serve. Bundled pictures and seven real meow recordings keep the cat content independent of external APIs.
 
 ## Run
 
@@ -46,18 +46,18 @@ After code changes, rebuild and restart. To stop: `systemctl --user disable --no
 | --- | --- |
 | `GET /api/cat` | Device’s assigned cat, mood, picture URL, and anonymous device ID |
 | `GET /api/cat?random=1` | Random cat; optional `exclude=Miso` avoids an immediate repeat |
-| `GET /api/meow` | Bundled real meow, `audio/ogg` |
+| `GET /api/meow` | Random bundled meow, `audio/ogg`; `?exclude=voice-id` avoids the last voice, `?voice=voice-id` selects one; response includes `X-Meow-Voice` |
 | `GET /api/status` | Random cat status JSON with the actual HTTP status |
 | `GET /api/status?code=418` | A chosen status; 200, 201, 400, 401, 403, 404, 418, 429, 500, 503 supported |
 | `GET /api/network` | Host connection status and online peer count; cached for 15 seconds |
 
-Intentional 4xx/5xx cat responses are successful playground interactions. Invalid codes return 400. Identity responses disable shared caching. Favorites are stored only in browser localStorage. The main view shows the photograph and two actions beneath it. Icon controls provide pictures, meows, HTTP cats, favorites, and downloads; the menu contains your assigned cat, API reference, connection details, and credits. The space bar always serves another picture. Fonts use the system font stack.
+Intentional 4xx/5xx cat responses are successful playground interactions. Invalid codes return 400. Identity responses disable shared caching. Favorites are stored only in browser localStorage. The main view shows the photograph and two actions beneath it. Icon controls provide pictures, meows, HTTP cats, favorites, and downloads; the menu contains your assigned cat, API reference, connection details, and credits. The meow button selects a different recording each time, including through Surprise me. The space bar always serves another picture. Fonts use the system font stack.
 
 ## Assets
 
 150 bundled cat photographs: the original 24 from Unsplash and 126 Wikimedia Commons portraits. Unsplash images use the [Unsplash license](https://unsplash.com/license); Commons images retain their individual Creative Commons or public-domain licenses. Photographer names, source pages, licenses, and thumbnail details are recorded in [public/cats/sources.json](public/cats/sources.json) and displayed at `/photo-credits`, linked from the app’s Credits menu. The images are bundled locally; serving a cat does not contact either source.
 
-“[Meow.ogg](https://commons.wikimedia.org/wiki/File:Meow.ogg)”: Silas meowing, recorded by Dan Crosby (Dcrosby). Unmodified, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Lucide icons: ISC license.
+Seven distinct real meow recordings from Wikimedia Commons, bundled locally as Ogg Vorbis. New clips are limited to eight seconds and volume-normalized; Silas’s original recording remains unmodified at `/meow.ogg`. Full recorder credits, source links, licenses, and changes are recorded in [public/meows/sources.json](public/meows/sources.json) and displayed at `/audio-credits`, which also provides playback and downloads. Each recording retains its original license. Lucide icons: ISC license.
 
 Implementation references: [Astro Node adapter](https://docs.astro.build/en/guides/integrations-guide/node/), [Tailscale Serve](https://tailscale.com/docs/features/tailscale-serve).
 

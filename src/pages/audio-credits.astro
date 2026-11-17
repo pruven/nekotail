@@ -1,0 +1,47 @@
+---
+import voices from '../../public/meows/sources.json';
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Audio credits — Nekotail</title>
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+  <body>
+    <main>
+      <a class="back" href="/">← Back to cats</a>
+      <h1>Audio credits</h1>
+      <p>Real cat recordings from Wikimedia Commons, bundled locally. Each recording retains its original license; excerpts and audio adjustments are listed below.</p>
+      <ol>
+        {voices.map(voice => <li>
+          <h2>{voice.title}</h2>
+          <audio controls preload="none" src={voice.file} aria-label={`Listen to ${voice.title}`}></audio>
+          <p><a href={voice.source} target="_blank" rel="noreferrer">{voice.sourceTitle}</a><br/>{voice.artist}</p>
+          <p>{voice.changes}</p>
+          <div><a href={voice.license} target="_blank" rel="noreferrer">{voice.licenseName}</a><a href={voice.file} download>Download ↗</a><span>{voice.duration.toFixed(1)}s</span></div>
+        </li>)}
+      </ol>
+    </main>
+    <style>
+      :global(*) { box-sizing: border-box; }
+      :global(body) { margin: 0; color: #172039; background: #ffe65a; font-family: Arial, sans-serif; }
+      main { max-width: 1000px; margin: auto; padding: 40px 24px; }
+      a { color: inherit; text-underline-offset: 3px; }
+      a:focus-visible { outline: 3px dashed #172039; outline-offset: 4px; }
+      .back { font-weight: 700; }
+      h1 { font-size: 40px; letter-spacing: -1px; margin: 32px 0 16px; }
+      p { font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; }
+      main > p { max-width: 720px; }
+      ol { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; list-style: none; padding: 0; margin-top: 32px; }
+      li { background: #fffdf5; border: 2px solid #172039; box-shadow: 4px 4px #172039; border-radius: 9px; padding: 20px; min-width: 0; }
+      h2 { font-size: 16px; line-height: 1.5; margin: 0; }
+      li p { margin: 12px 0; }
+      li div { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; }
+      audio { display: block; width: 100%; margin: 16px 0; height: 40px; }
+      @media (max-width: 600px) { ol { grid-template-columns: 1fr; } h1 { font-size: 32px; } }
+    </style>
+  </body>
+</html>

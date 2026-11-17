@@ -1,0 +1,86 @@
+[
+  {
+    "id": "silas",
+    "title": "Silas",
+    "file": "/meow.ogg",
+    "duration": 0.8,
+    "source": "https://commons.wikimedia.org/wiki/File:Meow.ogg",
+    "sourceTitle": "Meow.ogg",
+    "artist": "The original uploader was Dcrosby at English Wikipedia.",
+    "license": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "licenseName": "CC BY-SA 3.0",
+    "changes": "Unmodified original recording."
+  },
+  {
+    "id": "soft-meow",
+    "title": "Soft meow",
+    "file": "/meows/soft-meow.ogg",
+    "duration": 1.155,
+    "source": "https://commons.wikimedia.org/wiki/File:2015-11-24.%CE%BD%CE%B9%CE%B1%CE%BF%CF%8D%CF%81%CE%B9%CF%83%CE%BC%CE%B1.%CE%9D%CE%B9%CE%AC%CE%BF%CF%85.noise_reduced.flac",
+    "sourceTitle": "2015-11-24.νιαούρισμα.Νιάου.noise reduced.flac",
+    "artist": "Tsester",
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "licenseName": "CC0",
+    "changes": "volume normalized, converted to mono 48 kHz Ogg Vorbis. Licensed under the original license."
+  },
+  {
+    "id": "repeated-meows",
+    "title": "Repeated meows",
+    "file": "/meows/repeated-meows.ogg",
+    "duration": 8.0,
+    "source": "https://commons.wikimedia.org/wiki/File:Felis_silvestris_catus_meows.ogg",
+    "sourceTitle": "Felis silvestris catus meows.ogg",
+    "artist": "Tobias Puderer",
+    "license": "https://creativecommons.org/licenses/by-sa/3.0",
+    "licenseName": "CC BY-SA 3.0",
+    "changes": "Excerpt starting at 0.25s, limited to 8s; volume normalized, converted to mono 48 kHz Ogg Vorbis. Licensed under the original license."
+  },
+  {
+    "id": "little-meow",
+    "title": "Little meow",
+    "file": "/meows/little-meow.ogg",
+    "duration": 1.672,
+    "source": "https://commons.wikimedia.org/wiki/File:Felis_silvestris_catus.ogg",
+    "sourceTitle": "Felis silvestris catus.ogg",
+    "artist": "Jeanot",
+    "license": "https://creativecommons.org/licenses/by-sa/2.5",
+    "licenseName": "CC BY-SA 2.5",
+    "changes": "volume normalized, converted to mono 48 kHz Ogg Vorbis. Licensed under the original license."
+  },
+  {
+    "id": "impatient-cat",
+    "title": "Impatient cat",
+    "file": "/meows/impatient-cat.ogg",
+    "duration": 7.9,
+    "source": "https://commons.wikimedia.org/wiki/File:GettingOutImpatient.ogg",
+    "sourceTitle": "GettingOutImpatient.ogg",
+    "artist": "Heismark",
+    "license": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "licenseName": "Public domain",
+    "changes": "Excerpt starting at 1.50s, limited to 8s; volume normalized, converted to mono 48 kHz Ogg Vorbis. Licensed under the original license."
+  },
+  {
+    "id": "young-cat",
+    "title": "Young cat",
+    "file": "/meows/young-cat.ogg",
+    "duration": 1.155,
+    "source": "https://commons.wikimedia.org/wiki/File:Maullido_de_gata_hembra_joven.ogg",
+    "sourceTitle": "Maullido de gata hembra joven.ogg",
+    "artist": "George Miquilena",
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "licenseName": "CC0",
+    "changes": "volume normalized, converted to mono 48 kHz Ogg Vorbis. Licensed under the original license."
+  },
+  {
+    "id": "no-trip",
+    "title": "Protesting meow",
+    "file": "/meows/no-trip.ogg",
+    "duration": 8.0,
+    "source": "https://commons.wikimedia.org/wiki/File:NoTrip.ogg",
+    "sourceTitle": "NoTrip.ogg",
+    "artist": "Heismark",
+    "license": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "licenseName": "Public domain",
+    "changes": "Excerpt starting at 2.75s, limited to 8s; volume normalized, converted to mono 48 kHz Ogg Vorbis. Licensed under the original license. Additional 4 dB headroom applied."
+  }
+]
