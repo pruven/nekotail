@@ -34,3 +34,11 @@ Validation: frozen Bun install passes; Astro check reports zero diagnostics; Bun
 The default view now contains a large, uncropped cat photograph and two visible action labels directly beneath it: “Serve another cat” and “Surprise me.” Removed promotional copy, photo metadata, device panels, counters, the request-history interface, and the footer. Secondary modes, favorites, downloads, and the options menu use accessible icon buttons. API documentation, assigned-cat reset, connection details, and asset credits remain available on request. The primary action and space bar always return to a fresh picture; Surprise me retains picture, meow, and HTTP-cat responses.
 
 Bun production build and Astro type checks pass with zero diagnostics. Verified client control IDs, document order, removed copy, the random-photo endpoint, and the updated tailnet HTTPS page. Desktop and mobile screenshot inspection confirms the photo and buttons fit within the viewport. No backend or cat-assignment behavior changed. Click-through and audible playback were not tested in a browser during this layout change.
+
+## Brutalist theme
+
+Applied a paper-white and black palette, monospace type, square controls, heavy borders, and solid offset shadows to the photo-first layout, dialogs, and favicon. The image remains uncropped, with the two primary actions underneath and no additional visible copy. Bun build and Astro checks pass without diagnostics; verified the live stylesheet, photo/action order, random-cat endpoint, and tailnet HTTPS page. Inspected 1440×900 and 390×844 screenshots: images and controls fit with no horizontal overflow.
+
+## Pop-art color update
+
+Replaced the monochrome styling with a saturated yellow dotted backdrop, cobalt photo-frame depth, pink secondary actions, white photo mat, dark outlines, and heavier sans-serif controls. Rounded the hard-edged controls slightly while retaining tactile press states. Kept the photo-first composition and the same two action labels underneath. Updated the favicon to match. Bun build and Astro checks pass without diagnostics; inspected desktop and phone screenshots with no overflow and verified the production palette, random-photo endpoint, and tailnet HTTPS page.
