@@ -42,3 +42,7 @@ Applied a paper-white and black palette, monospace type, square controls, heavy 
 ## Pop-art color update
 
 Replaced the monochrome styling with a saturated yellow dotted backdrop, cobalt photo-frame depth, pink secondary actions, white photo mat, dark outlines, and heavier sans-serif controls. Rounded the hard-edged controls slightly while retaining tactile press states. Kept the photo-first composition and the same two action labels underneath. Updated the favicon to match. Bun build and Astro checks pass without diagnostics; inspected desktop and phone screenshots with no overflow and verified the production palette, random-photo endpoint, and tailnet HTTPS page.
+
+## HTTP cat visibility fix
+
+The HTTP status UI used an opaque panel covering the entire photograph. Replaced it with a compact, non-interactive corner badge containing only the code and title, leaving the underlying cat visible. Verified all ten status endpoints return the intended actual HTTP status and an available JPEG; tailnet HTTPS also returns a real 418 cat response. Bun build and Astro checks pass. Inspected desktop/mobile status-mode render fixtures assembled from production HTML and a real API response; these checks verify layout rather than browser click-through behavior.

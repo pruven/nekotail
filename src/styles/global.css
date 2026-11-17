@@ -165,7 +165,7 @@ svg { flex-shrink: 0; stroke-width: 2; }
 .inline-message { font-size: 13px; line-height: 1.6; text-align: center; margin: 0 auto; max-width: 600px; }
 .inline-message:not(:empty) { padding: 8px 12px 0; }
 
-.sound-overlay, .status-overlay {
+.sound-overlay {
   position: absolute;
   inset: 0;
   display: flex;
@@ -190,8 +190,21 @@ svg { flex-shrink: 0; stroke-width: 2; }
 }
 .sound-overlay > button:hover { background: var(--accent); color: #fff; }
 .sound-overlay > button:active { transform: translate(6px, 6px); box-shadow: none; }
-.status-overlay > strong { font-size: clamp(100px, 15vw, 220px); font-weight: 900; letter-spacing: -.08em; line-height: 1; }
-.status-overlay h2 { font-size: 24px; font-weight: 800; text-transform: uppercase; margin: 20px 0 0; }
+.status-overlay {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  max-width: calc(100% - 40px);
+  padding: 12px 18px;
+  border: 3px solid var(--line);
+  border-radius: 9px;
+  box-shadow: 4px 4px 0 var(--ink);
+  background: var(--surface);
+  color: var(--ink);
+  pointer-events: none;
+}
+.status-overlay > strong { display: block; font-size: clamp(40px, 5vw, 68px); font-weight: 900; letter-spacing: -.06em; line-height: 1; }
+.status-overlay h2 { font-size: 14px; font-weight: 800; text-transform: uppercase; margin: 4px 0 0; overflow-wrap: anywhere; }
 .cat-stage:has(.sound-overlay:not([hidden])) .image-actions,
 .cat-stage:has(.status-overlay:not([hidden])) .image-actions { z-index: 1; }
 
@@ -231,7 +244,8 @@ dialog a { text-decoration: underline; text-underline-offset: 3px; }
   .secondary-button svg { width: 15px; }
   .image-actions { right: 8px; top: 8px; gap: 6px; }
   .image-actions .icon-button { width: 34px; height: 34px; }
-  .status-overlay h2 { font-size: 20px; }
+  .status-overlay { left: 14px; bottom: 14px; max-width: calc(100% - 28px); padding: 9px 12px; }
+  .status-overlay h2 { font-size: 12px; }
   .sound-overlay > button { width: 84px; height: 84px; }
   dialog { padding: 20px; }
 }
